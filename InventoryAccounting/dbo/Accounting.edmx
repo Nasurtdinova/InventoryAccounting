@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище InventoryAccountingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounting_Card">
+          <Key>
+            <PropertyRef Name="ID_Accounting_Card" />
+          </Key>
+          <Property Name="ID_Accounting_Card" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ID_Inventory" Type="int" />
+          <Property Name="ID_Storage" Type="int" />
+          <Property Name="ID_Invoice" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Position" Type="int" />
+        </EntityType>
+        <EntityType Name="Expenditure_Invoice">
+          <Key>
+            <PropertyRef Name="ID_Expenditure_Invoice" />
+          </Key>
+          <Property Name="ID_Expenditure_Invoice" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Count" Type="int" />
+          <Property Name="ID_Employee" Type="int" />
+          <Property Name="ID_Storage" Type="int" />
+          <Property Name="ID_Inventory" Type="int" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ID_Inventory" />
+          </Key>
+          <Property Name="ID_Inventory" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Type_Inventory" Type="int" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Receipt_Invoice">
+          <Key>
+            <PropertyRef Name="ID_Receipt_Invoice" />
+          </Key>
+          <Property Name="ID_Receipt_Invoice" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Count" Type="int" />
+          <Property Name="ID_Employee" Type="int" />
+          <Property Name="ID_Storage" Type="int" />
+          <Property Name="ID_Inventory" Type="int" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="ID_Storage" />
+          </Key>
+          <Property Name="ID_Storage" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type_Inventory">
+          <Key>
+            <PropertyRef Name="ID_Type_Inventory" />
+          </Key>
+          <Property Name="ID_Type_Inventory" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Accounting_Card_Expenditure_Invoice">
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Expenditure_Invoice" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Receipt_Invoice">
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Receipt_Invoice" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Type_Inventory">
+          <End Role="Type_Inventory" Type="Self.Type_Inventory" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipt_Invoice_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipt_Invoice_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище InventoryAccountingModelContainer">
+          <EntitySet Name="Accounting_Card" EntityType="Self.Accounting_Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenditure_Invoice" EntityType="Self.Expenditure_Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt_Invoice" EntityType="Self.Receipt_Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_Inventory" EntityType="Self.Type_Inventory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounting_Card_Expenditure_Invoice" Association="Self.FK_Accounting_Card_Expenditure_Invoice">
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Inventory" Association="Self.FK_Accounting_Card_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Receipt_Invoice" Association="Self.FK_Accounting_Card_Receipt_Invoice">
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Storage" Association="Self.FK_Accounting_Card_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Employee" Association="Self.FK_Expenditure_Invoice_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Inventory" Association="Self.FK_Expenditure_Invoice_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Storage" Association="Self.FK_Expenditure_Invoice_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Type_Inventory" Association="Self.FK_Inventory_Type_Inventory">
+            <End Role="Type_Inventory" EntitySet="Type_Inventory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipt_Invoice_Employee" Association="Self.FK_Receipt_Invoice_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipt_Invoice_Storage" Association="Self.FK_Receipt_Invoice_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventoryAccountingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accounting_Card">
+          <Key>
+            <PropertyRef Name="ID_Accounting_Card" />
+          </Key>
+          <Property Name="ID_Accounting_Card" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ID_Inventory" Type="Int32" />
+          <Property Name="ID_Storage" Type="Int32" />
+          <Property Name="ID_Invoice" Type="Int32" />
+          <NavigationProperty Name="Expenditure_Invoice" Relationship="Self.FK_Accounting_Card_Expenditure_Invoice" FromRole="Accounting_Card" ToRole="Expenditure_Invoice" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Accounting_Card_Inventory" FromRole="Accounting_Card" ToRole="Inventory" />
+          <NavigationProperty Name="Receipt_Invoice" Relationship="Self.FK_Accounting_Card_Receipt_Invoice" FromRole="Accounting_Card" ToRole="Receipt_Invoice" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK_Accounting_Card_Storage" FromRole="Accounting_Card" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID_Employee" />
+          </Key>
+          <Property Name="ID_Employee" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Position" Type="Int32" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="Expenditure_Invoice" Relationship="Self.FK_Expenditure_Invoice_Employee" FromRole="Employee" ToRole="Expenditure_Invoice" />
+          <NavigationProperty Name="Receipt_Invoice" Relationship="Self.FK_Receipt_Invoice_Employee" FromRole="Employee" ToRole="Receipt_Invoice" />
+        </EntityType>
+        <EntityType Name="Expenditure_Invoice">
+          <Key>
+            <PropertyRef Name="ID_Expenditure_Invoice" />
+          </Key>
+          <Property Name="ID_Expenditure_Invoice" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="ID_Employee" Type="Int32" />
+          <Property Name="ID_Storage" Type="Int32" />
+          <Property Name="ID_Inventory" Type="Int32" />
+          <NavigationProperty Name="Accounting_Card" Relationship="Self.FK_Accounting_Card_Expenditure_Invoice" FromRole="Expenditure_Invoice" ToRole="Accounting_Card" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Expenditure_Invoice_Employee" FromRole="Expenditure_Invoice" ToRole="Employee" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Expenditure_Invoice_Inventory" FromRole="Expenditure_Invoice" ToRole="Inventory" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK_Expenditure_Invoice_Storage" FromRole="Expenditure_Invoice" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ID_Inventory" />
+          </Key>
+          <Property Name="ID_Inventory" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Type_Inventory" Type="Int32" />
+          <NavigationProperty Name="Accounting_Card" Relationship="Self.FK_Accounting_Card_Inventory" FromRole="Inventory" ToRole="Accounting_Card" />
+          <NavigationProperty Name="Expenditure_Invoice" Relationship="Self.FK_Expenditure_Invoice_Inventory" FromRole="Inventory" ToRole="Expenditure_Invoice" />
+          <NavigationProperty Name="Type_Inventory" Relationship="Self.FK_Inventory_Type_Inventory" FromRole="Inventory" ToRole="Type_Inventory" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Receipt_Invoice">
+          <Key>
+            <PropertyRef Name="ID_Receipt_Invoice" />
+          </Key>
+          <Property Name="ID_Receipt_Invoice" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="ID_Employee" Type="Int32" />
+          <Property Name="ID_Storage" Type="Int32" />
+          <Property Name="ID_Inventory" Type="Int32" />
+          <NavigationProperty Name="Accounting_Card" Relationship="Self.FK_Accounting_Card_Receipt_Invoice" FromRole="Receipt_Invoice" ToRole="Accounting_Card" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Receipt_Invoice_Employee" FromRole="Receipt_Invoice" ToRole="Employee" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK_Receipt_Invoice_Storage" FromRole="Receipt_Invoice" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="ID_Storage" />
+          </Key>
+          <Property Name="ID_Storage" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <NavigationProperty Name="Accounting_Card" Relationship="Self.FK_Accounting_Card_Storage" FromRole="Storage" ToRole="Accounting_Card" />
+          <NavigationProperty Name="Expenditure_Invoice" Relationship="Self.FK_Expenditure_Invoice_Storage" FromRole="Storage" ToRole="Expenditure_Invoice" />
+          <NavigationProperty Name="Receipt_Invoice" Relationship="Self.FK_Receipt_Invoice_Storage" FromRole="Storage" ToRole="Receipt_Invoice" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_Inventory">
+          <Key>
+            <PropertyRef Name="ID_Type_Inventory" />
+          </Key>
+          <Property Name="ID_Type_Inventory" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Type_Inventory" FromRole="Type_Inventory" ToRole="Inventory" />
+        </EntityType>
+        <Association Name="FK_Accounting_Card_Expenditure_Invoice">
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Expenditure_Invoice" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Receipt_Invoice">
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Receipt_Invoice" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Accounting_Card" Type="Self.Accounting_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Accounting_Card">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ID_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipt_Invoice_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_Employee" />
+            </Principal>
+            <Dependent Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Invoice_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Expenditure_Invoice">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Type_Inventory">
+          <End Role="Type_Inventory" Type="Self.Type_Inventory" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipt_Invoice_Storage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Receipt_Invoice" Type="Self.Receipt_Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="ID_Storage" />
+            </Principal>
+            <Dependent Role="Receipt_Invoice">
+              <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryAccountingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounting_Card" EntityType="Self.Accounting_Card" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Expenditure_Invoice" EntityType="Self.Expenditure_Invoice" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Receipt_Invoice" EntityType="Self.Receipt_Invoice" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_Inventory" EntityType="Self.Type_Inventory" />
+          <AssociationSet Name="FK_Accounting_Card_Expenditure_Invoice" Association="Self.FK_Accounting_Card_Expenditure_Invoice">
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Inventory" Association="Self.FK_Accounting_Card_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Receipt_Invoice" Association="Self.FK_Accounting_Card_Receipt_Invoice">
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Storage" Association="Self.FK_Accounting_Card_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Accounting_Card" EntitySet="Accounting_Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Employee" Association="Self.FK_Expenditure_Invoice_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipt_Invoice_Employee" Association="Self.FK_Receipt_Invoice_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Inventory" Association="Self.FK_Expenditure_Invoice_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Invoice_Storage" Association="Self.FK_Expenditure_Invoice_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Type_Inventory" Association="Self.FK_Inventory_Type_Inventory">
+            <End Role="Type_Inventory" EntitySet="Type_Inventory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipt_Invoice_Storage" Association="Self.FK_Receipt_Invoice_Storage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryAccountingModelContainer" CdmEntityContainer="InventoryAccountingEntities">
+          <EntitySetMapping Name="Accounting_Card">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Accounting_Card">
+              <MappingFragment StoreEntitySet="Accounting_Card">
+                <ScalarProperty Name="ID_Accounting_Card" ColumnName="ID_Accounting_Card" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
+                <ScalarProperty Name="ID_Storage" ColumnName="ID_Storage" />
+                <ScalarProperty Name="ID_Invoice" ColumnName="ID_Invoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenditure_Invoice">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Expenditure_Invoice">
+              <MappingFragment StoreEntitySet="Expenditure_Invoice">
+                <ScalarProperty Name="ID_Expenditure_Invoice" ColumnName="ID_Expenditure_Invoice" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="ID_Storage" ColumnName="ID_Storage" />
+                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Type_Inventory" ColumnName="ID_Type_Inventory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipt_Invoice">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Receipt_Invoice">
+              <MappingFragment StoreEntitySet="Receipt_Invoice">
+                <ScalarProperty Name="ID_Receipt_Invoice" ColumnName="ID_Receipt_Invoice" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="ID_Storage" ColumnName="ID_Storage" />
+                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="ID_Storage" ColumnName="ID_Storage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_Inventory">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Type_Inventory">
+              <MappingFragment StoreEntitySet="Type_Inventory">
+                <ScalarProperty Name="ID_Type_Inventory" ColumnName="ID_Type_Inventory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
