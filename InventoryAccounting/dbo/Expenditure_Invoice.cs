@@ -18,19 +18,20 @@ namespace InventoryAccounting.dbo
         public Expenditure_Invoice()
         {
             this.Accounting_Card = new HashSet<Accounting_Card>();
+            this.Expenditure_Inventory = new HashSet<Expenditure_Inventory>();
         }
     
         public int ID_Expenditure_Invoice { get; set; }
+        public string Name { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> Count { get; set; }
         public Nullable<int> ID_Employee { get; set; }
         public Nullable<int> ID_Storage { get; set; }
-        public Nullable<int> ID_Inventory { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Accounting_Card> Accounting_Card { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual Inventory Inventory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Expenditure_Inventory> Expenditure_Inventory { get; set; }
         public virtual Storage Storage { get; set; }
     }
 }

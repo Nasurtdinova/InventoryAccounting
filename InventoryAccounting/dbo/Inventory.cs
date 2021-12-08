@@ -18,7 +18,8 @@ namespace InventoryAccounting.dbo
         public Inventory()
         {
             this.Accounting_Card = new HashSet<Accounting_Card>();
-            this.Expenditure_Invoice = new HashSet<Expenditure_Invoice>();
+            this.Expenditure_Inventory = new HashSet<Expenditure_Inventory>();
+            this.Receipt_Inventory = new HashSet<Receipt_Inventory>();
         }
     
         public int ID_Inventory { get; set; }
@@ -28,7 +29,9 @@ namespace InventoryAccounting.dbo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Accounting_Card> Accounting_Card { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expenditure_Invoice> Expenditure_Invoice { get; set; }
+        public virtual ICollection<Expenditure_Inventory> Expenditure_Inventory { get; set; }
         public virtual Type_Inventory Type_Inventory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Receipt_Inventory> Receipt_Inventory { get; set; }
     }
 }

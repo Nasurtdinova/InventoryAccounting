@@ -5,26 +5,31 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="baef6c9bdd594d7a92b138056c80d705" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryAccountingModel.Accounting_Card" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Employee" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Expenditure_Invoice" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Inventory" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Position" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Receipt_Invoice" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Storage" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryAccountingModel.Type_Inventory" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Invoice" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Inventory" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Receipt_Invoice" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Storage" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Employee_Position" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Invoice_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Invoice_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Invoice_Inventory" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Invoice_Storage" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Inventory_Type_Inventory" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Invoice_Storage" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Accounting_Card" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Expenditure_Inventory" Width="1.5" PointX="8.25" PointY="5.25" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Expenditure_Invoice" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Inventory" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Position" Width="1.5" PointX="1.5" PointY="8.375" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Receipt_Inventory" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Receipt_Invoice" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Storage" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryAccountingModel.Type_Inventory" Width="1.5" PointX="0.75" PointY="11.375" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Invoice" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Inventory" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Receipt_Invoice" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Accounting_Card_Storage" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Employee_Position" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Invoice_Employee" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Invoice_Employee" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Inventory_Expenditure_Invoice" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Inventory_Inventory" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Expenditure_Invoice_Storage" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Inventory_Type_Inventory" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Inventory_Inventory" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Inventory_Receipt_Invoice" />
+        <AssociationConnector Association="InventoryAccountingModel.FK_Receipt_Invoice_Storage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -76,6 +76,9 @@
     <Compile Include="dbo\Employee.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbo\Expenditure_Inventory.cs">
+      <DependentUpon>Accounting.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbo\Expenditure_Invoice.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
@@ -83,6 +86,9 @@
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
     <Compile Include="dbo\Position.cs">
+      <DependentUpon>Accounting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbo\Receipt_Inventory.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
     <Compile Include="dbo\Receipt_Invoice.cs">
@@ -97,6 +103,50 @@
     <Compile Include="dbo\Type_Inventory.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
+    <Page Include="employee\Expenditure_invoice\page_create_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Expenditure_invoice\page_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Expenditure_invoice\page_expen_inven.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Expenditure_invoice\page_redak_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_create_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_create_recinven.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\page_employee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_recinven.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_redak_Invoice_Inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Receipt_invoice\page_redak_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,6 +164,40 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_create_expen.xaml.cs">
+      <DependentUpon>page_create_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_expen.xaml.cs">
+      <DependentUpon>page_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_expen_inven.xaml.cs">
+      <DependentUpon>page_expen_inven.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_redak_expen.xaml.cs">
+      <DependentUpon>page_redak_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\InvoiceInventory.cs" />
+    <Compile Include="employee\Receipt_invoice\page_create_receipt.xaml.cs">
+      <DependentUpon>page_create_receipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Receipt_invoice\page_create_recinven.xaml.cs">
+      <DependentUpon>page_create_recinven.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\page_employee.xaml.cs">
+      <DependentUpon>page_employee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Receipt_invoice\page_receipt.xaml.cs">
+      <DependentUpon>page_receipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Receipt_invoice\page_recinven.xaml.cs">
+      <DependentUpon>page_recinven.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Receipt_invoice\page_redak_Invoice_Inventory.xaml.cs">
+      <DependentUpon>page_redak_Invoice_Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Receipt_invoice\page_redak_receipt.xaml.cs">
+      <DependentUpon>page_redak_receipt.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -179,9 +263,13 @@
       <DependentUpon>Accounting.edmx</DependentUpon>
       <LastGenOutput>Accounting.cs</LastGenOutput>
     </Content>
+    <Resource Include="employee\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="admin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

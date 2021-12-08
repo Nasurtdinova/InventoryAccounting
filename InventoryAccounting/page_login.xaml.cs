@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryAccounting.employee;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace InventoryAccounting
             var k = employee.Where(a => a.Login == txt_login.Text && a.Password == txt_password.Password).FirstOrDefault();
             if (k != null)
             {
-                //NavigationService.Navigate(new page_employee(k.Name, k.ID_sponsor));
+                NavigationService.Navigate(new page_employee(k.Name, Convert.ToInt32(k.ID_Employee)));
             }
             else if (txt_login.Text == "2002" && txt_password.Password == "2003")
             {
