@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,52 @@ namespace InventoryAccounting.employee.Expenditure_invoice
     /// </summary>
     public partial class page_redak_expen : Page
     {
-        public page_redak_expen()
+        public static ObservableCollection<dbo.Storage> storage { get; set; }
+        public static ObservableCollection<dbo.Inventory> inventory { get; set; }
+        public static ObservableCollection<dbo.Expenditure_Invoice> expen { get; set; }
+        public static int idStorage { get; set; }
+        public static int idInventory { get; set; }
+        public static int idEmployee { get; set; }
+        public static int idInv { get; set; }
+        public page_redak_expen(int id, int idInvoice)
         {
             InitializeComponent();
+            storage = new ObservableCollection<dbo.Storage>(Connection.connection.Storage.ToList());
+            inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
+            expen = new ObservableCollection<dbo.Expenditure_Invoice>(Connection.connection.Expenditure_Invoice.ToList());
+            idInv = idInvoice;
+            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInv).FirstOrDefault();
+            idEmployee = id;
+            idStorage = Convert.ToInt32(recInv.ID_Storage);
+            name_txt.Text = recInv.Name;
+            storage_txt.Text = recInv.Storage.Name;
+            this.DataContext = this;
+        }
+
+        private void storage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var a = (sender as ComboBox).SelectedItem as dbo.Storage;
+            idStorage = a.ID_Storage;
+        }
+
+        private void btn_edit_Click(object sender, RoutedEventArgs e)
+        {
+
+            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInv).FirstOrDefault();
+                recInv.ID_Employee = idEmployee;
+                recInv.ID_Storage = idStorage;
+                recInv.Name = name_txt.Text;
+                recInv.Date = DateTime.Now;
+                Connection.connection.SaveChanges();
+                MessageBox.Show("Done");
+           
+            NavigationService.Navigate(new page_expen(idEmployee));
+        }
+
+        private void btn_back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }
+

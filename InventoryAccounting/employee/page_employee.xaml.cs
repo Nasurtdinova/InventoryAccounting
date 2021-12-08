@@ -37,5 +37,10 @@ namespace InventoryAccounting.employee
         {
             NavigationService.Navigate(new Expenditure_invoice.page_expen(id));
         }
+
+        private void btn_exit_Click_2(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new page_login());
+        }
     }
 }

@@ -107,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="employee\Expenditure_invoice\page_create_expeninven.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="employee\Expenditure_invoice\page_expen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +171,9 @@
     </Compile>
     <Compile Include="employee\Expenditure_invoice\page_create_expen.xaml.cs">
       <DependentUpon>page_create_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_create_expeninven.xaml.cs">
+      <DependentUpon>page_create_expeninven.xaml</DependentUpon>
     </Compile>
     <Compile Include="employee\Expenditure_invoice\page_expen.xaml.cs">
       <DependentUpon>page_expen.xaml</DependentUpon>

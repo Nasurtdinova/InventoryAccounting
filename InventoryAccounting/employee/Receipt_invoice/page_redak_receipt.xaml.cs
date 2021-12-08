@@ -53,19 +53,13 @@ namespace InventoryAccounting.employee
         {
             
             var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInv).FirstOrDefault();
-            if (idEmployee == recInv.ID_Employee)
-            {
                 recInv.ID_Employee = idEmployee;
                 recInv.ID_Storage = idStorage;
                 recInv.Name = name_txt.Text;
                 recInv.Date = DateTime.Now;
                 Connection.connection.SaveChanges();
                 MessageBox.Show("Done");
-            }
-            else
-            {
-                MessageBox.Show("Недостаточно прав чтобы изменить!!!");
-            }
+
             NavigationService.Navigate(new page_receipt(idEmployee));
         }
 

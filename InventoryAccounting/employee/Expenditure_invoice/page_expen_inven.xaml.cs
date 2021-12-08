@@ -57,7 +57,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page_create_recinven(idInvoice));
+            NavigationService.Navigate(new page_create_expeninven(idInvoice));
         }
     }
 }

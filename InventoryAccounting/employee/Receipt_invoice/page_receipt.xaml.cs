@@ -81,9 +81,16 @@ namespace InventoryAccounting.employee
 
             string text = label.Text;
             var recInv = receipt.Where(c => c.Name == text).FirstOrDefault();
-            if (MessageBox.Show($"Edit {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (idEmployee == recInv.ID_Employee)
             {
-                NavigationService.Navigate(new page_redak_receipt(idEmployee,recInv.ID_Receipt_Invoice));
+                if (MessageBox.Show($"Edit {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    NavigationService.Navigate(new page_redak_receipt(idEmployee, recInv.ID_Receipt_Invoice));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Недостаточно прав пользователя!!!");
             }
         }
 

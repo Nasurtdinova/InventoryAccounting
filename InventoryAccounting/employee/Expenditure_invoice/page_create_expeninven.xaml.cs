@@ -14,38 +14,38 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InventoryAccounting.employee
+namespace InventoryAccounting.employee.Expenditure_invoice
 {
     /// <summary>
-    /// Логика взаимодействия для page_create_recinven.xaml
+    /// Логика взаимодействия для page_create_expeninven.xaml
     /// </summary>
-    public partial class page_create_recinven : Page
+    public partial class page_create_expeninven : Page
     {
-        dbo.Receipt_Inventory a = null;
+        dbo.Expenditure_Inventory a = null;
         public static int idInvoice { get; set; }
         public static int idInventory { get; set; }
         public static ObservableCollection<dbo.Inventory> inventory { get; set; }
-        public static ObservableCollection<dbo.Receipt_Invoice> receipt { get; set; }
-        public page_create_recinven(int idInv)
+        public static ObservableCollection<dbo.Expenditure_Invoice> expen { get; set; }
+        public page_create_expeninven(int idInv)
         {
             InitializeComponent();
             idInvoice = idInv;
             inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
-            receipt = new ObservableCollection<dbo.Receipt_Invoice>(Connection.connection.Receipt_Invoice.ToList());
-            a = new dbo.Receipt_Inventory();
+            expen = new ObservableCollection<dbo.Expenditure_Invoice>(Connection.connection.Expenditure_Invoice.ToList());
+            a = new dbo.Expenditure_Inventory();
             this.DataContext = this;
         }
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
-            a.ID_Receipt_Invoice = idInvoice;
+            a.ID_Expenditure_Invoice = idInvoice;
             a.ID_Inventory = idInventory;
             a.Count = count.Text;
-            Connection.connection.Receipt_Inventory.Add(a);
+            Connection.connection.Expenditure_Inventory.Add(a);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
-            var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInvoice).FirstOrDefault();
-            NavigationService.Navigate(new page_recinven(idInvoice, Convert.ToInt32(recInv.ID_Employee)));
+            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInvoice).FirstOrDefault();
+            NavigationService.Navigate(new page_expen_inven(idInvoice, Convert.ToInt32(recInv.ID_Employee)));
         }
 
         private void btn_back_Click(object sender, RoutedEventArgs e)
