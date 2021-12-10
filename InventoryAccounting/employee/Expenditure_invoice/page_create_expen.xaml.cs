@@ -29,6 +29,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
         public static int idEmployee { get; set; }
         dbo.Expenditure_Inventory a = null;
         dbo.Expenditure_Invoice b = null;
+        dbo.Accounting_Card_Expenditure c = null;
         public page_create_expen(int id)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
             inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
             a = new dbo.Expenditure_Inventory();
             b = new dbo.Expenditure_Invoice();
+            c = new dbo.Accounting_Card_Expenditure();
             this.DataContext = this;
         }
 
@@ -66,6 +68,14 @@ namespace InventoryAccounting.employee.Expenditure_invoice
             a.ID_Expenditure_Invoice = b.ID_Expenditure_Invoice;
             a.Count = count.Text;
             Connection.connection.Expenditure_Inventory.Add(a);
+            Connection.connection.SaveChanges();
+            MessageBox.Show("done");
+
+            c.ID_Inventory = idInventory;
+            c.Date = DateTime.Now;
+            c.ID_Storage = idStorage;
+            c.ID_Expenditure_Invoice = b.ID_Expenditure_Invoice;
+            Connection.connection.Accounting_Card_Expenditure.Add(c);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
 

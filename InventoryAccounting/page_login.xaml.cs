@@ -1,4 +1,5 @@
-﻿using InventoryAccounting.employee;
+﻿using InventoryAccounting.admin;
+using InventoryAccounting.employee;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace InventoryAccounting
             }
             else if (txt_login.Text == "2002" && txt_password.Password == "2003")
             {
-                //NavigationService.Navigate(new page_admin("Admin"));
+                NavigationService.Navigate(new page_admin());
             }
             else
             {

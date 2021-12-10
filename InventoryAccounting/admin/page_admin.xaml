@@ -1,12 +1,13 @@
-﻿<Page x:Class="InventoryAccounting.employee.page_employee"
+﻿<Page x:Class="InventoryAccounting.admin.page_admin"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:InventoryAccounting.employee"
+      xmlns:local="clr-namespace:InventoryAccounting.admin"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="page_employee">
+      Title="page_admin">
+
     <Page.Resources>
         <Style TargetType="Button">
             <Setter Property="Template">
@@ -38,11 +39,12 @@
             <RowDefinition Height="150"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="name_tb" Grid.Row="0" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="35" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
-        <Image Source="logo.png" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"/>
+        <Image Source="C:\Users\nasur\source\repos\InventoryAccounting\InventoryAccounting\employee\logo.png" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2"/>
         <Button x:Name="btn_exit" Content="Exit" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.Row="0" Grid.Column="2" Height="60" Width="150" Click="btn_exit_Click_2"></Button>
         <Button x:Name="btn_receipt" Content="Receipt invoice" Grid.Row="2" Grid.Column="0" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2" Width="250" Height="60" Margin="73,18,277,19" Click="btn_receipt_Click"></Button>
         <Button x:Name="btn_expen" Content="Expenditure invoice" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20"  Width="250" Height="60" Margin="283,18,67,19" Click="btn_expen_Click"></Button>
-        <Button x:Name="btn_card" Content="Accounting card" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.Row="3" Grid.Column="1"  Width="250" Height="60" Click="btn_card_Click"></Button>
+        <Button x:Name="btn_card" Content="Accounting card" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.Row="1" Grid.Column="1"  Width="250" Height="60" Click="btn_card_Click"></Button>
+        <Button x:Name="btn_inventory" Content="Inventory" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Width="150" Height="60"></Button>
+        <Button x:Name="btn_storage" Content="Storage" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="20" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Width="150" Height="60"></Button>
     </Grid>
-
 </Page>

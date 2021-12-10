@@ -1,0 +1,90 @@
+﻿<Page x:Class="InventoryAccounting.employee.Card.page_card"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryAccounting.employee.Card"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="page_card">
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="#FFA0D0F1" Padding="10">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60">
+            </RowDefinition>
+            <RowDefinition Height="50">
+            </RowDefinition>
+            <RowDefinition Height="150">
+            </RowDefinition>
+            <RowDefinition Height="150">
+            </RowDefinition>
+            <RowDefinition Height="70">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="inventory_txt" Grid.Column="1" ItemsSource="{Binding inventory}" FontFamily="Lucida Calligraphy" FontSize="20" SelectionChanged="inventory_SelectionChanged" Grid.Row="0" Width="350" Height="50">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" FontFamily="Lucida Calligraphy" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Text="Accounting card" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text=" Inventory         Date                  Storage       Count Type" Grid.ColumnSpan="2" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="22" Grid.Row="1"></TextBlock>
+        <ListView x:Name="listReceipt" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding resultReceipt}"  Height="140"  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NameInventory}" FontFamily="Lucida Calligraphy" FontSize="22"  Margin="10"/>
+                        <TextBlock Text="{Binding Date}" FontFamily="Lucida Calligraphy" FontSize="22"  Margin="10"/>
+                        <TextBlock Text="{Binding NameStorage}" FontFamily="Lucida Calligraphy" FontSize="22"  Margin="10"/>
+                        <TextBlock Text="{Binding count}" FontFamily="Lucida Calligraphy" FontSize="22"  Margin="10"/>
+                        <TextBlock Text="{Binding isWho}" FontFamily="Lucida Calligraphy" FontSize="22" Padding="10"/>
+                   
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="listExpenditure" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding resultExpenditure}"  Height="140"  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NameInventory}" FontFamily="Lucida Calligraphy" FontSize="22" Padding="10"/>
+                        <TextBlock Text="{Binding Date}" FontFamily="Lucida Calligraphy" FontSize="22" Padding="10"/>
+                        <TextBlock Text="{Binding NameStorage}" FontFamily="Lucida Calligraphy" FontSize="22"  Margin="10"/>
+                        <TextBlock Text="{Binding count}" FontFamily="Lucida Calligraphy" FontSize="22" Padding="10"/>
+                        <TextBlock Text="{Binding isWho}" FontFamily="Lucida Calligraphy" FontSize="22" Padding="10"/>
+   
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <Button x:Name="btn_main" FontSize="18" FontFamily="Lucida Calligraphy" Content="Main page" Grid.Row="3" Grid.Column="0" Width="150" Height="50" Margin="10"></Button>
+            <Button x:Name="btn_create" FontSize="18" FontFamily="Lucida Calligraphy" Grid.Row="2" Width="200" Content="Create" Height="50" Margin="10"></Button>
+            <Button x:Name="btn_back" FontSize="18" FontFamily="Lucida Calligraphy" Click="btn_back_Click" Grid.Row="2" Width="200" Content="Back" Height="50"></Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

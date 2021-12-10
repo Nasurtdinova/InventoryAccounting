@@ -64,12 +64,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="admin\page_admin.xaml.cs">
+      <DependentUpon>page_admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="dbo\Accounting.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbo\Accounting_Card.cs">
+    <Compile Include="dbo\Accounting_Card_Expenditure.cs">
+      <DependentUpon>Accounting.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbo\Accounting_Card_Receipt.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
     <Compile Include="dbo\Connection.cs" />
@@ -103,6 +109,14 @@
     <Compile Include="dbo\Type_Inventory.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
+    <Page Include="admin\page_admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Card\page_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="employee\Expenditure_invoice\page_create_expen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +182,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="employee\Card\page_card.xaml.cs">
+      <DependentUpon>page_card.xaml</DependentUpon>
     </Compile>
     <Compile Include="employee\Expenditure_invoice\page_create_expen.xaml.cs">
       <DependentUpon>page_create_expen.xaml</DependentUpon>
@@ -275,8 +292,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,7 +25,6 @@ namespace InventoryAccounting.employee
             InitializeComponent();
             a = page_recinven.path;
             idEmployee = id;
-            tb_id.Text = a.ID.ToString();
             name.Text = a.NameInventory;
             count.Text = a.Count.ToString();
         }
@@ -63,7 +62,7 @@ namespace InventoryAccounting.employee
             this.DataContext = this;
             if (idEmployee == recInv.Receipt_Invoice.ID_Employee)
             {
-                recInv.ID_Receipt_Invoice = Convert.ToInt32(tb_id.Text);
+                recInv.ID_Receipt_Invoice = a.ID;
                 recInv.Count = count.Text;
                 Connection.connection.SaveChanges();
                 MessageBox.Show("Done");

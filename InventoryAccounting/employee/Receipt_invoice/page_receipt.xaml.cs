@@ -57,7 +57,7 @@ namespace InventoryAccounting.employee
 
             string text = label.Text;
             var recInv = receipt.Where(c => c.Name == text).FirstOrDefault();
-            if (idEmployee == recInv.ID_Employee)
+            if (idEmployee == 0)
             {
                 if (MessageBox.Show($"Remove {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -81,7 +81,7 @@ namespace InventoryAccounting.employee
 
             string text = label.Text;
             var recInv = receipt.Where(c => c.Name == text).FirstOrDefault();
-            if (idEmployee == recInv.ID_Employee)
+            if (idEmployee == recInv.ID_Employee || idEmployee == 0)
             {
                 if (MessageBox.Show($"Edit {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {

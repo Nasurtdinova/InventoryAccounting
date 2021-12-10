@@ -25,7 +25,6 @@ namespace InventoryAccounting.dbo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Accounting_Card> Accounting_Card { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Expenditure_Inventory> Expenditure_Inventory { get; set; }
         public virtual DbSet<Expenditure_Invoice> Expenditure_Invoice { get; set; }
@@ -36,5 +35,7 @@ namespace InventoryAccounting.dbo
         public virtual DbSet<Storage> Storage { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type_Inventory> Type_Inventory { get; set; }
+        public virtual DbSet<Accounting_Card_Expenditure> Accounting_Card_Expenditure { get; set; }
+        public virtual DbSet<Accounting_Card_Receipt> Accounting_Card_Receipt { get; set; }
     }
 }

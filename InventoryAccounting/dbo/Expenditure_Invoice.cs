@@ -17,8 +17,8 @@ namespace InventoryAccounting.dbo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Expenditure_Invoice()
         {
-            this.Accounting_Card = new HashSet<Accounting_Card>();
             this.Expenditure_Inventory = new HashSet<Expenditure_Inventory>();
+            this.Accounting_Card_Expenditure = new HashSet<Accounting_Card_Expenditure>();
         }
     
         public int ID_Expenditure_Invoice { get; set; }
@@ -27,11 +27,11 @@ namespace InventoryAccounting.dbo
         public Nullable<int> ID_Employee { get; set; }
         public Nullable<int> ID_Storage { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Accounting_Card> Accounting_Card { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenditure_Inventory> Expenditure_Inventory { get; set; }
         public virtual Storage Storage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Accounting_Card_Expenditure> Accounting_Card_Expenditure { get; set; }
     }
 }

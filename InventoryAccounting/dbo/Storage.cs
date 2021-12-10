@@ -17,9 +17,10 @@ namespace InventoryAccounting.dbo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Storage()
         {
-            this.Accounting_Card = new HashSet<Accounting_Card>();
             this.Expenditure_Invoice = new HashSet<Expenditure_Invoice>();
             this.Receipt_Invoice = new HashSet<Receipt_Invoice>();
+            this.Accounting_Card_Expenditure = new HashSet<Accounting_Card_Expenditure>();
+            this.Accounting_Card_Receipt = new HashSet<Accounting_Card_Receipt>();
         }
     
         public int ID_Storage { get; set; }
@@ -27,10 +28,12 @@ namespace InventoryAccounting.dbo
         public Nullable<int> Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Accounting_Card> Accounting_Card { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenditure_Invoice> Expenditure_Invoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Receipt_Invoice> Receipt_Invoice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Accounting_Card_Expenditure> Accounting_Card_Expenditure { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Accounting_Card_Receipt> Accounting_Card_Receipt { get; set; }
     }
 }

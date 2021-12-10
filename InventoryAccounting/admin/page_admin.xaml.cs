@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryAccounting.employee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,29 +14,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InventoryAccounting.employee
+namespace InventoryAccounting.admin
 {
     /// <summary>
-    /// Логика взаимодействия для page_employee.xaml
+    /// Логика взаимодействия для page_admin.xaml
     /// </summary>
-    public partial class page_employee : Page
+    public partial class page_admin : Page
     {
-        int id { get; set; }
-        public page_employee(string name, int idEmployee)
+        public page_admin()
         {
             InitializeComponent();
-            id = idEmployee;
-            name_tb.Text = $"Welcome, {name}!";
+            name_tb.Text = "Welcome, admin";
         }
 
         private void btn_receipt_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page_receipt(id));
+            NavigationService.Navigate(new page_receipt(0));
         }
 
         private void btn_expen_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Expenditure_invoice.page_expen(id));
+            NavigationService.Navigate(new employee.Expenditure_invoice.page_expen(0));
         }
 
         private void btn_exit_Click_2(object sender, RoutedEventArgs e)
@@ -45,7 +44,7 @@ namespace InventoryAccounting.employee
 
         private void btn_card_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Card.page_card());
+            NavigationService.Navigate(new employee.Card.page_card());
         }
     }
 }

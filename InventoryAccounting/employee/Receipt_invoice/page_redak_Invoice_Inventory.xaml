@@ -40,11 +40,8 @@
             </RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Text="Inventory" FontFamily="Lucida Calligraphy" FontWeight="Bold" FontSize="35" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock Text="Receipt Invoice" FontFamily="Lucida Calligraphy" FontWeight="Bold" Grid.Column="0" Grid.Row="1" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock Text="Name inventory" FontFamily="Lucida Calligraphy" FontWeight="Bold" Grid.Column="0" Grid.Row="2" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock Text="Count" FontFamily="Lucida Calligraphy" FontWeight="Bold" Grid.Column="0" Grid.Row="3" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-
-        <TextBox x:Name="tb_id" FontSize="25" FontFamily="Lucida Calligraphy" Grid.Row="1" Width="250" Height="50" Grid.Column="1"></TextBox>
         <TextBox x:Name="name" FontSize="25" FontFamily="Lucida Calligraphy" Width="250" Height="50" Grid.Row="2" Grid.Column="1"></TextBox>
         <TextBox x:Name="count" FontSize="25" FontFamily="Lucida Calligraphy" Width="250" Height="50" Grid.Row="3" Grid.Column="1"></TextBox>
         <StackPanel Grid.Row="6" Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">

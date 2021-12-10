@@ -26,6 +26,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
         public static int idInventory { get; set; }
         public static ObservableCollection<dbo.Inventory> inventory { get; set; }
         public static ObservableCollection<dbo.Expenditure_Invoice> expen { get; set; }
+        dbo.Accounting_Card_Expenditure c = null;
         public page_create_expeninven(int idInv)
         {
             InitializeComponent();
@@ -33,18 +34,28 @@ namespace InventoryAccounting.employee.Expenditure_invoice
             inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
             expen = new ObservableCollection<dbo.Expenditure_Invoice>(Connection.connection.Expenditure_Invoice.ToList());
             a = new dbo.Expenditure_Inventory();
+            c = new dbo.Accounting_Card_Expenditure();
             this.DataContext = this;
         }
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
+            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInvoice).FirstOrDefault();
             a.ID_Expenditure_Invoice = idInvoice;
             a.ID_Inventory = idInventory;
             a.Count = count.Text;
             Connection.connection.Expenditure_Inventory.Add(a);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
-            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInvoice).FirstOrDefault();
+
+            c.ID_Inventory = idInventory;
+            c.Date = DateTime.Now;
+            c.ID_Storage = recInv.ID_Storage;
+            c.ID_Expenditure_Invoice = idInvoice;
+            Connection.connection.Accounting_Card_Expenditure.Add(c);
+            Connection.connection.SaveChanges();
+            MessageBox.Show("done");
+
             NavigationService.Navigate(new page_expen_inven(idInvoice, Convert.ToInt32(recInv.ID_Employee)));
         }
 

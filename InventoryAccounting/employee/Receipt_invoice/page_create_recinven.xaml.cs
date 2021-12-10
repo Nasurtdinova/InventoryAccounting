@@ -22,6 +22,7 @@ namespace InventoryAccounting.employee
     public partial class page_create_recinven : Page
     {
         dbo.Receipt_Inventory a = null;
+        dbo.Accounting_Card_Receipt c = null;
         public static int idInvoice { get; set; }
         public static int idInventory { get; set; }
         public static ObservableCollection<dbo.Inventory> inventory { get; set; }
@@ -32,19 +33,29 @@ namespace InventoryAccounting.employee
             idInvoice = idInv;
             inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
             receipt = new ObservableCollection<dbo.Receipt_Invoice>(Connection.connection.Receipt_Invoice.ToList());
+            c = new dbo.Accounting_Card_Receipt();
             a = new dbo.Receipt_Inventory();
             this.DataContext = this;
         }
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
+            var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInvoice).FirstOrDefault();
             a.ID_Receipt_Invoice = idInvoice;
             a.ID_Inventory = idInventory;
             a.Count = count.Text;
             Connection.connection.Receipt_Inventory.Add(a);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
-            var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInvoice).FirstOrDefault();
+
+            c.ID_Inventory = idInventory;
+            c.Date = DateTime.Now;
+            c.ID_Storage = recInv.ID_Storage;
+            c.ID_Receipt_Invoice = idInvoice;
+            Connection.connection.Accounting_Card_Receipt.Add(c);
+            Connection.connection.SaveChanges();
+            MessageBox.Show("done");
+
             NavigationService.Navigate(new page_recinven(idInvoice, Convert.ToInt32(recInv.ID_Employee)));
         }
 

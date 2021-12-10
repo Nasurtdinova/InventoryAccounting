@@ -28,6 +28,7 @@ namespace InventoryAccounting.employee
         public static int idEmployee { get; set; }
         dbo.Receipt_Inventory a = null;
         dbo.Receipt_Invoice b = null;
+        dbo.Accounting_Card_Receipt c = null;
         public page_create_receipt(int id)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace InventoryAccounting.employee
             inventory = new ObservableCollection<dbo.Inventory>(Connection.connection.Inventory.ToList());
             a = new dbo.Receipt_Inventory();
             b = new dbo.Receipt_Invoice();
+            c = new dbo.Accounting_Card_Receipt();
             this.DataContext = this;
         }
 
@@ -65,6 +67,14 @@ namespace InventoryAccounting.employee
             a.ID_Receipt_Invoice = b.ID_Receipt_Invoice;
             a.Count = count.Text;
             Connection.connection.Receipt_Inventory.Add(a);
+            Connection.connection.SaveChanges();
+            MessageBox.Show("done");
+
+            c.ID_Inventory = idInventory;
+            c.Date = DateTime.Now;
+            c.ID_Storage = idStorage;
+            c.ID_Receipt_Invoice = b.ID_Receipt_Invoice;
+            Connection.connection.Accounting_Card_Receipt.Add(c);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
 

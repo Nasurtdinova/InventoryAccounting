@@ -12,17 +12,16 @@ namespace InventoryAccounting.dbo
     using System;
     using System.Collections.Generic;
     
-    public partial class Accounting_Card
+    public partial class Accounting_Card_Expenditure
     {
         public int ID_Accounting_Card { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> ID_Inventory { get; set; }
         public Nullable<int> ID_Storage { get; set; }
-        public Nullable<int> ID_Invoice { get; set; }
+        public Nullable<int> ID_Expenditure_Invoice { get; set; }
     
         public virtual Expenditure_Invoice Expenditure_Invoice { get; set; }
         public virtual Inventory Inventory { get; set; }
-        public virtual Receipt_Invoice Receipt_Invoice { get; set; }
         public virtual Storage Storage { get; set; }
     }
 }
