@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace InventoryAccounting.employee.Expenditure_invoice
 {
-    /// <summary>
-    /// Логика взаимодействия для page_expen.xaml
-    /// </summary>
     public partial class page_expen : Page
     {
         public static ObservableCollection<dbo.Expenditure_Invoice> expen { get; set; }
@@ -40,7 +37,14 @@ namespace InventoryAccounting.employee.Expenditure_invoice
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page_create_expen(idEmployee));
+            if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_create_receipt());
+            }
+            else
+            {
+                NavigationService.Navigate(new page_create_expen(idEmployee));
+            }
         }
 
         private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -57,7 +61,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
 
             string text = label.Text;
             var recInv = expen.Where(c => c.Name == text).FirstOrDefault();
-            if (idEmployee == recInv.ID_Employee)
+            if (idEmployee == 0)
             {
                 if (MessageBox.Show($"Remove {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -88,6 +92,10 @@ namespace InventoryAccounting.employee.Expenditure_invoice
                     NavigationService.Navigate(new page_redak_expen(idEmployee, recInv.ID_Expenditure_Invoice));
                 }
             }
+            else if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_admin_redak_expen(recInv.ID_Expenditure_Invoice));
+            }
             else
             {
                 MessageBox.Show("Недостаточно прав пользователя!!!");
@@ -97,7 +105,15 @@ namespace InventoryAccounting.employee.Expenditure_invoice
         private void btn_main_Click(object sender, RoutedEventArgs e)
         {
             var empl = employee.Where(c => c.ID_Employee == idEmployee).FirstOrDefault();
-            NavigationService.Navigate(new page_employee(empl.Name, idEmployee));
+
+            if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_admin());
+            }
+            else
+            {
+                NavigationService.Navigate(new page_employee(empl.Name, idEmployee));
+            }
         }
     }
 }

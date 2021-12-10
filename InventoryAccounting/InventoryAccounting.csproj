@@ -67,6 +67,18 @@
     <Compile Include="admin\page_admin.xaml.cs">
       <DependentUpon>page_admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="admin\page_admin_redak_expen.xaml.cs">
+      <DependentUpon>page_admin_redak_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\page_admin_redak_receipt.xaml.cs">
+      <DependentUpon>page_admin_redak_receipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\page_create_admin_expen.xaml.cs">
+      <DependentUpon>page_create_admin_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\page_create_receipt.xaml.cs">
+      <DependentUpon>page_create_receipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="dbo\Accounting.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,6 +125,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="admin\page_admin_redak_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\page_admin_redak_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\page_create_admin_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\page_create_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="employee\Card\page_card.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="employee\Expenditure_invoice\page_redak_expen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\Expenditure_invoice\page_redak_expen_inventory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,6 +232,9 @@
     </Compile>
     <Compile Include="employee\Expenditure_invoice\page_redak_expen.xaml.cs">
       <DependentUpon>page_redak_expen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\Expenditure_invoice\page_redak_expen_inventory.xaml.cs">
+      <DependentUpon>page_redak_expen_inventory.xaml</DependentUpon>
     </Compile>
     <Compile Include="employee\InvoiceInventory.cs" />
     <Compile Include="employee\Receipt_invoice\page_create_receipt.xaml.cs">

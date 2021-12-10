@@ -40,7 +40,15 @@ namespace InventoryAccounting.employee
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page_create_receipt(idEmployee));
+            if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_create_admin_expen());
+            }
+            else
+            {
+                NavigationService.Navigate(new page_create_receipt(idEmployee));
+            }
+            
         }
 
         private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -81,12 +89,16 @@ namespace InventoryAccounting.employee
 
             string text = label.Text;
             var recInv = receipt.Where(c => c.Name == text).FirstOrDefault();
-            if (idEmployee == recInv.ID_Employee || idEmployee == 0)
+            if (idEmployee == recInv.ID_Employee)
             {
                 if (MessageBox.Show($"Edit {text}?", "question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     NavigationService.Navigate(new page_redak_receipt(idEmployee, recInv.ID_Receipt_Invoice));
                 }
+            }
+            else if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_admin_redak_receipt(recInv.ID_Receipt_Invoice));
             }
             else
             {
@@ -97,7 +109,15 @@ namespace InventoryAccounting.employee
         private void btn_main_Click(object sender, RoutedEventArgs e)
         {
             var empl = employee.Where(c => c.ID_Employee == idEmployee).FirstOrDefault();
-            NavigationService.Navigate(new page_employee(empl.Name, idEmployee));
+            if (idEmployee == 0)
+            {
+                NavigationService.Navigate(new admin.page_admin());
+            }
+            else
+            {
+                NavigationService.Navigate(new page_employee(empl.Name, idEmployee));
+            }
+            
         }
     }
 }
