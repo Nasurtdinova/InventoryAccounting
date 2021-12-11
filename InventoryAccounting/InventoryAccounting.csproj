@@ -64,6 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="admin\inventory\page_create_inventory.xaml.cs">
+      <DependentUpon>page_create_inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\inventory\page_inventory.xaml.cs">
+      <DependentUpon>page_inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\inventory\page_redak_inventory.xaml.cs">
+      <DependentUpon>page_redak_inventory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="admin\page_admin.xaml.cs">
       <DependentUpon>page_admin.xaml</DependentUpon>
     </Compile>
@@ -78,6 +87,15 @@
     </Compile>
     <Compile Include="admin\page_create_receipt.xaml.cs">
       <DependentUpon>page_create_receipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\storage\page_create_storage.xaml.cs">
+      <DependentUpon>page_create_storage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\storage\page_redak_storage.xaml.cs">
+      <DependentUpon>page_redak_storage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\storage\page_storage.xaml.cs">
+      <DependentUpon>page_storage.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbo\Accounting.cs">
       <AutoGen>True</AutoGen>
@@ -121,6 +139,18 @@
     <Compile Include="dbo\Type_Inventory.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
+    <Page Include="admin\inventory\page_create_inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\inventory\page_inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\inventory\page_redak_inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="admin\page_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +168,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="admin\page_create_receipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\storage\page_create_storage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\storage\page_redak_storage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="admin\storage\page_storage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +208,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="employee\Expenditure_invoice\page_redak_expen_inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\page_inventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="employee\page_storage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +287,12 @@
       <DependentUpon>page_redak_expen_inventory.xaml</DependentUpon>
     </Compile>
     <Compile Include="employee\InvoiceInventory.cs" />
+    <Compile Include="employee\page_inventory.xaml.cs">
+      <DependentUpon>page_inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\page_storage.xaml.cs">
+      <DependentUpon>page_storage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="employee\Receipt_invoice\page_create_receipt.xaml.cs">
       <DependentUpon>page_create_receipt.xaml</DependentUpon>
     </Compile>

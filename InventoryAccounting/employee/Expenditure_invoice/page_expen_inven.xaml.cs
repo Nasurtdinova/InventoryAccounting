@@ -40,7 +40,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
                      join t in inventory on f.ID_Inventory equals t.ID_Inventory
                      join k in expen on f.ID_Expenditure_Invoice equals k.ID_Expenditure_Invoice
                      where idInvoice == f.ID_Expenditure_Invoice
-                     select new InvoiceInventory { ID = f.ID_Expenditure_Invoice, NameInventory = t.Name, Count = Convert.ToInt32(f.Count) };
+                     select new InvoiceInventory { ID = f.ID_Expenditure_Invoice, NameInventory = t.Name, Count = Convert.ToInt32(f.Count), NameInvoice=k.Name };
             this.DataContext = this;
         }
 
@@ -52,13 +52,21 @@ namespace InventoryAccounting.employee.Expenditure_invoice
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             path = (sender as ListView).SelectedItem as InvoiceInventory;
-            NavigationService.Navigate(new page_redak_Invoice_Inventory(idEmployee2));
+            NavigationService.Navigate(new page_redak_expen_inventory(idEmployee2));
         }
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
+            var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInvoice).FirstOrDefault();
+            if (idEmployee2 == recInv.ID_Employee || idEmployee2 == 0)
+            {
+                NavigationService.Navigate(new page_create_expeninven(idInvoice));
+            }
 
-            NavigationService.Navigate(new page_create_expeninven(idInvoice));
+            else
+            {
+                MessageBox.Show("Недостаточно прав пользователя!!!");
+            }
         }
     }
 }

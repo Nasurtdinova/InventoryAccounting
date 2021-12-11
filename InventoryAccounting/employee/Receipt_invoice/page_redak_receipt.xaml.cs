@@ -51,8 +51,8 @@ namespace InventoryAccounting.employee
 
         private void btn_edit_Click(object sender, RoutedEventArgs e)
         {
-            
-            var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInv).FirstOrDefault();
+
+                var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInv).FirstOrDefault();
                 recInv.ID_Employee = idEmployee;
                 recInv.ID_Storage = idStorage;
                 recInv.Name = name_txt.Text;
@@ -60,7 +60,8 @@ namespace InventoryAccounting.employee
                 Connection.connection.SaveChanges();
                 MessageBox.Show("Done");
 
-            NavigationService.Navigate(new page_receipt(idEmployee));
+                NavigationService.Navigate(new page_receipt(idEmployee));
+          
         }
 
         private void btn_back_Click(object sender, RoutedEventArgs e)

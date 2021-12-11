@@ -47,5 +47,15 @@ namespace InventoryAccounting.employee
         {
             NavigationService.Navigate(new Card.page_card());
         }
+
+        private void btn_inventory_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new page_inventory());
+        }
+
+        private void btn_storage_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new page_storage());
+        }
     }
 }

@@ -59,7 +59,7 @@
           <Key>
             <PropertyRef Name="ID_Inventory" />
           </Key>
-          <Property Name="ID_Inventory" Type="int" Nullable="false" />
+          <Property Name="ID_Inventory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_Type_Inventory" Type="int" />
         </EntityType>
@@ -93,7 +93,7 @@
           <Key>
             <PropertyRef Name="ID_Storage" />
           </Key>
-          <Property Name="ID_Storage" Type="int" Nullable="false" />
+          <Property Name="ID_Storage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="int" />
         </EntityType>
@@ -203,7 +203,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Expenditure_Inventory_Expenditure_Invoice">
-          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="1" />
+          <End Role="Expenditure_Invoice" Type="Self.Expenditure_Invoice" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Expenditure_Inventory" Type="Self.Expenditure_Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Expenditure_Invoice">

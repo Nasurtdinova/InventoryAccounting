@@ -40,6 +40,7 @@ namespace InventoryAccounting.admin
             idInv = idInvoice;
             var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInv).FirstOrDefault();
             idStorage = Convert.ToInt32(recInv.ID_Storage);
+            idEmployee = Convert.ToInt32(recInv.ID_Employee);
             name_txt.Text = recInv.Name;
             storage_txt.Text = recInv.Storage.Name;
             employee_txt.Text = recInv.Employee.Name;

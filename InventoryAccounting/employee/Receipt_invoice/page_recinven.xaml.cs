@@ -40,7 +40,7 @@ namespace InventoryAccounting.employee
                      join t in inventory on f.ID_Inventory equals t.ID_Inventory
                      join k in receipt on f.ID_Receipt_Invoice equals k.ID_Receipt_Invoice
                      where idInvoice == f.ID_Receipt_Invoice
-                     select new InvoiceInventory { ID = f.ID_Receipt_Invoice, NameInventory = t.Name, Count = Convert.ToInt32(f.Count) };
+                     select new InvoiceInventory { ID = f.ID_Receipt_Invoice, NameInventory = t.Name, Count = Convert.ToInt32(f.Count), NameInvoice = k.Name };
             this.DataContext = this;
         }
 
@@ -57,7 +57,16 @@ namespace InventoryAccounting.employee
 
         private void btn_create_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new page_create_recinven(idInvoice));
+            var recInv = receipt.Where(c => c.ID_Receipt_Invoice == idInvoice).FirstOrDefault();
+            if (idEmployee2 == recInv.ID_Employee || idEmployee2 == 0)
+            {
+                NavigationService.Navigate(new page_create_recinven(idInvoice));
+            }
+
+            else
+            {
+                MessageBox.Show("Недостаточно прав пользователя!!!");
+            }
         }
     }
 }

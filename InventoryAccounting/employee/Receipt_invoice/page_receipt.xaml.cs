@@ -42,7 +42,7 @@ namespace InventoryAccounting.employee
         {
             if (idEmployee == 0)
             {
-                NavigationService.Navigate(new admin.page_create_admin_expen());
+                NavigationService.Navigate(new admin.page_create_receipt());
             }
             else
             {

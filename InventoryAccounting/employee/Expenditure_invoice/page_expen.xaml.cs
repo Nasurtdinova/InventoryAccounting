@@ -39,7 +39,7 @@ namespace InventoryAccounting.employee.Expenditure_invoice
         {
             if (idEmployee == 0)
             {
-                NavigationService.Navigate(new admin.page_create_receipt());
+                NavigationService.Navigate(new admin.page_create_admin_expen());
             }
             else
             {
