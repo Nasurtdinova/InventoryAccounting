@@ -18,7 +18,7 @@ namespace InventoryAccounting.dbo
         public int ID_Inventory { get; set; }
         public string Count { get; set; }
     
-        public virtual Inventory Inventory { get; set; }
         public virtual Receipt_Invoice Receipt_Invoice { get; set; }
+        public virtual Inventory Inventory { get; set; }
     }
 }

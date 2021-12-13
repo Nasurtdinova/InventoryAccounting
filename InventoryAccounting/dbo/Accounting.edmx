@@ -55,6 +55,13 @@
           <Property Name="ID_Employee" Type="int" />
           <Property Name="ID_Storage" Type="int" />
         </EntityType>
+        <EntityType Name="Image_Inventory">
+          <Key>
+            <PropertyRef Name="ID_Image" />
+          </Key>
+          <Property Name="ID_Image" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="ID_Inventory" />
@@ -62,6 +69,7 @@
           <Property Name="ID_Inventory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_Type_Inventory" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -320,6 +328,7 @@
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expenditure_Inventory" EntityType="Self.Expenditure_Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expenditure_Invoice" EntityType="Self.Expenditure_Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image_Inventory" EntityType="Self.Image_Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Receipt_Inventory" EntityType="Self.Receipt_Inventory" Schema="dbo" store:Type="Tables" />
@@ -400,7 +409,6 @@
           <EntitySet Name="Employee" EntityType="InventoryAccountingModel.Employee" />
           <EntitySet Name="Expenditure_Inventory" EntityType="InventoryAccountingModel.Expenditure_Inventory" />
           <EntitySet Name="Expenditure_Invoice" EntityType="InventoryAccountingModel.Expenditure_Invoice" />
-          <EntitySet Name="Inventory" EntityType="InventoryAccountingModel.Inventory" />
           <EntitySet Name="Position" EntityType="InventoryAccountingModel.Position" />
           <EntitySet Name="Receipt_Inventory" EntityType="InventoryAccountingModel.Receipt_Inventory" />
           <EntitySet Name="Receipt_Invoice" EntityType="InventoryAccountingModel.Receipt_Invoice" />
@@ -423,21 +431,9 @@
             <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
             <End Role="Expenditure_Inventory" EntitySet="Expenditure_Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Expenditure_Inventory_Inventory" Association="InventoryAccountingModel.FK_Expenditure_Inventory_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Expenditure_Inventory" EntitySet="Expenditure_Inventory" />
-          </AssociationSet>
           <AssociationSet Name="FK_Expenditure_Invoice_Storage" Association="InventoryAccountingModel.FK_Expenditure_Invoice_Storage">
             <End Role="Storage" EntitySet="Storage" />
             <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inventory_Type_Inventory" Association="InventoryAccountingModel.FK_Inventory_Type_Inventory">
-            <End Role="Type_Inventory" EntitySet="Type_Inventory" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Receipt_Inventory_Inventory" Association="InventoryAccountingModel.FK_Receipt_Inventory_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Receipt_Inventory" EntitySet="Receipt_Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Receipt_Inventory_Receipt_Invoice" Association="InventoryAccountingModel.FK_Receipt_Inventory_Receipt_Invoice">
             <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
@@ -453,17 +449,9 @@
             <End Role="Expenditure_Invoice" EntitySet="Expenditure_Invoice" />
             <End Role="Accounting_Card_Expenditure" EntitySet="Accounting_Card_Expenditure" />
           </AssociationSet>
-          <AssociationSet Name="FK_Accounting_Card_Expenditure_Inventory" Association="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Accounting_Card_Expenditure" EntitySet="Accounting_Card_Expenditure" />
-          </AssociationSet>
           <AssociationSet Name="FK_Accounting_Card_Expenditure_Storage" Association="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Storage">
             <End Role="Storage" EntitySet="Storage" />
             <End Role="Accounting_Card_Expenditure" EntitySet="Accounting_Card_Expenditure" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Accounting_Card_Inventory" Association="InventoryAccountingModel.FK_Accounting_Card_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Accounting_Card_Receipt" EntitySet="Accounting_Card_Receipt" />
           </AssociationSet>
           <AssociationSet Name="FK_Accounting_Card_Receipt_Invoice" Association="InventoryAccountingModel.FK_Accounting_Card_Receipt_Invoice">
             <End Role="Receipt_Invoice" EntitySet="Receipt_Invoice" />
@@ -472,6 +460,28 @@
           <AssociationSet Name="FK_Accounting_Card_Storage" Association="InventoryAccountingModel.FK_Accounting_Card_Storage">
             <End Role="Storage" EntitySet="Storage" />
             <End Role="Accounting_Card_Receipt" EntitySet="Accounting_Card_Receipt" />
+          </AssociationSet>
+          <EntitySet Name="Image_Inventory" EntityType="InventoryAccountingModel.Image_Inventory" />
+          <EntitySet Name="Inventory" EntityType="InventoryAccountingModel.Inventory" />
+          <AssociationSet Name="FK_Accounting_Card_Expenditure_Inventory" Association="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Accounting_Card_Expenditure" EntitySet="Accounting_Card_Expenditure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounting_Card_Inventory" Association="InventoryAccountingModel.FK_Accounting_Card_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Accounting_Card_Receipt" EntitySet="Accounting_Card_Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expenditure_Inventory_Inventory" Association="InventoryAccountingModel.FK_Expenditure_Inventory_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Expenditure_Inventory" EntitySet="Expenditure_Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Type_Inventory" Association="InventoryAccountingModel.FK_Inventory_Type_Inventory">
+            <End Role="Type_Inventory" EntitySet="Type_Inventory" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipt_Inventory_Inventory" Association="InventoryAccountingModel.FK_Receipt_Inventory_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Receipt_Inventory" EntitySet="Receipt_Inventory" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Employee">
@@ -513,19 +523,6 @@
           <NavigationProperty Name="Storage" Relationship="InventoryAccountingModel.FK_Expenditure_Invoice_Storage" FromRole="Expenditure_Invoice" ToRole="Storage" />
           <NavigationProperty Name="Accounting_Card_Expenditure" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Expenditure_Invoice" FromRole="Expenditure_Invoice" ToRole="Accounting_Card_Expenditure" />
         </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="ID_Inventory" />
-          </Key>
-          <Property Name="ID_Inventory" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Type_Inventory" Type="Int32" />
-          <NavigationProperty Name="Expenditure_Inventory" Relationship="InventoryAccountingModel.FK_Expenditure_Inventory_Inventory" FromRole="Inventory" ToRole="Expenditure_Inventory" />
-          <NavigationProperty Name="Type_Inventory" Relationship="InventoryAccountingModel.FK_Inventory_Type_Inventory" FromRole="Inventory" ToRole="Type_Inventory" />
-          <NavigationProperty Name="Receipt_Inventory" Relationship="InventoryAccountingModel.FK_Receipt_Inventory_Inventory" FromRole="Inventory" ToRole="Receipt_Inventory" />
-          <NavigationProperty Name="Accounting_Card_Expenditure" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory" FromRole="Inventory" ToRole="Accounting_Card_Expenditure" />
-          <NavigationProperty Name="Accounting_Card_Receipt" Relationship="InventoryAccountingModel.FK_Accounting_Card_Inventory" FromRole="Inventory" ToRole="Accounting_Card_Receipt" />
-        </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="ID_Position" />
@@ -542,8 +539,8 @@
           <Property Name="ID_Receipt_Invoice" Type="Int32" Nullable="false" />
           <Property Name="ID_Inventory" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Receipt_Inventory_Inventory" FromRole="Receipt_Inventory" ToRole="Inventory" />
           <NavigationProperty Name="Receipt_Invoice" Relationship="InventoryAccountingModel.FK_Receipt_Inventory_Receipt_Invoice" FromRole="Receipt_Inventory" ToRole="Receipt_Invoice" />
+          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Receipt_Inventory_Inventory" FromRole="Receipt_Inventory" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="Receipt_Invoice">
           <Key>
@@ -637,18 +634,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Expenditure_Inventory_Inventory">
-          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="InventoryAccountingModel.Expenditure_Inventory" Role="Expenditure_Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventory">
-              <PropertyRef Name="ID_Inventory" />
-            </Principal>
-            <Dependent Role="Expenditure_Inventory">
-              <PropertyRef Name="ID_Inventory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Expenditure_Invoice_Storage">
           <End Type="InventoryAccountingModel.Storage" Role="Storage" Multiplicity="0..1" />
           <End Type="InventoryAccountingModel.Expenditure_Invoice" Role="Expenditure_Invoice" Multiplicity="*" />
@@ -658,30 +643,6 @@
             </Principal>
             <Dependent Role="Expenditure_Invoice">
               <PropertyRef Name="ID_Storage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inventory_Type_Inventory">
-          <End Type="InventoryAccountingModel.Type_Inventory" Role="Type_Inventory" Multiplicity="0..1" />
-          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type_Inventory">
-              <PropertyRef Name="ID_Type_Inventory" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="ID_Type_Inventory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Receipt_Inventory_Inventory">
-          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="InventoryAccountingModel.Receipt_Inventory" Role="Receipt_Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventory">
-              <PropertyRef Name="ID_Inventory" />
-            </Principal>
-            <Dependent Role="Receipt_Inventory">
-              <PropertyRef Name="ID_Inventory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -721,8 +682,8 @@
           <Property Name="ID_Storage" Type="Int32" />
           <Property Name="ID_Expenditure_Invoice" Type="Int32" />
           <NavigationProperty Name="Expenditure_Invoice" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Expenditure_Invoice" FromRole="Accounting_Card_Expenditure" ToRole="Expenditure_Invoice" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory" FromRole="Accounting_Card_Expenditure" ToRole="Inventory" />
           <NavigationProperty Name="Storage" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Storage" FromRole="Accounting_Card_Expenditure" ToRole="Storage" />
+          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory" FromRole="Accounting_Card_Expenditure" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="Accounting_Card_Receipt">
           <Key>
@@ -733,9 +694,9 @@
           <Property Name="ID_Inventory" Type="Int32" />
           <Property Name="ID_Storage" Type="Int32" />
           <Property Name="ID_Receipt_Invoice" Type="Int32" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Accounting_Card_Inventory" FromRole="Accounting_Card_Receipt" ToRole="Inventory" />
           <NavigationProperty Name="Receipt_Invoice" Relationship="InventoryAccountingModel.FK_Accounting_Card_Receipt_Invoice" FromRole="Accounting_Card_Receipt" ToRole="Receipt_Invoice" />
           <NavigationProperty Name="Storage" Relationship="InventoryAccountingModel.FK_Accounting_Card_Storage" FromRole="Accounting_Card_Receipt" ToRole="Storage" />
+          <NavigationProperty Name="Inventory" Relationship="InventoryAccountingModel.FK_Accounting_Card_Inventory" FromRole="Accounting_Card_Receipt" ToRole="Inventory" />
         </EntityType>
         <Association Name="FK_Accounting_Card_Expenditure_Expenditure_Invoice">
           <End Type="InventoryAccountingModel.Expenditure_Invoice" Role="Expenditure_Invoice" Multiplicity="0..1">
@@ -751,18 +712,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Accounting_Card_Expenditure_Inventory">
-          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="0..1" />
-          <End Type="InventoryAccountingModel.Accounting_Card_Expenditure" Role="Accounting_Card_Expenditure" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventory">
-              <PropertyRef Name="ID_Inventory" />
-            </Principal>
-            <Dependent Role="Accounting_Card_Expenditure">
-              <PropertyRef Name="ID_Inventory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Accounting_Card_Expenditure_Storage">
           <End Type="InventoryAccountingModel.Storage" Role="Storage" Multiplicity="0..1" />
           <End Type="InventoryAccountingModel.Accounting_Card_Expenditure" Role="Accounting_Card_Expenditure" Multiplicity="*" />
@@ -772,18 +721,6 @@
             </Principal>
             <Dependent Role="Accounting_Card_Expenditure">
               <PropertyRef Name="ID_Storage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Accounting_Card_Inventory">
-          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="0..1" />
-          <End Type="InventoryAccountingModel.Accounting_Card_Receipt" Role="Accounting_Card_Receipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventory">
-              <PropertyRef Name="ID_Inventory" />
-            </Principal>
-            <Dependent Role="Accounting_Card_Receipt">
-              <PropertyRef Name="ID_Inventory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -810,6 +747,87 @@
             </Principal>
             <Dependent Role="Accounting_Card_Receipt">
               <PropertyRef Name="ID_Storage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Image_Inventory">
+          <Key>
+            <PropertyRef Name="ID_Image" />
+          </Key>
+          <Property Name="ID_Image" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ID_Inventory" />
+          </Key>
+          <Property Name="ID_Inventory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Type_Inventory" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounting_Card_Expenditure" Relationship="InventoryAccountingModel.FK_Accounting_Card_Expenditure_Inventory" FromRole="Inventory" ToRole="Accounting_Card_Expenditure" />
+          <NavigationProperty Name="Accounting_Card_Receipt" Relationship="InventoryAccountingModel.FK_Accounting_Card_Inventory" FromRole="Inventory" ToRole="Accounting_Card_Receipt" />
+          <NavigationProperty Name="Expenditure_Inventory" Relationship="InventoryAccountingModel.FK_Expenditure_Inventory_Inventory" FromRole="Inventory" ToRole="Expenditure_Inventory" />
+          <NavigationProperty Name="Type_Inventory" Relationship="InventoryAccountingModel.FK_Inventory_Type_Inventory" FromRole="Inventory" ToRole="Type_Inventory" />
+          <NavigationProperty Name="Receipt_Inventory" Relationship="InventoryAccountingModel.FK_Receipt_Inventory_Inventory" FromRole="Inventory" ToRole="Receipt_Inventory" />
+        </EntityType>
+        <Association Name="FK_Accounting_Card_Expenditure_Inventory">
+          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="0..1" />
+          <End Type="InventoryAccountingModel.Accounting_Card_Expenditure" Role="Accounting_Card_Expenditure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Accounting_Card_Expenditure">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounting_Card_Inventory">
+          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="0..1" />
+          <End Type="InventoryAccountingModel.Accounting_Card_Receipt" Role="Accounting_Card_Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Accounting_Card_Receipt">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expenditure_Inventory_Inventory">
+          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="InventoryAccountingModel.Expenditure_Inventory" Role="Expenditure_Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Expenditure_Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Type_Inventory">
+          <End Type="InventoryAccountingModel.Type_Inventory" Role="Type_Inventory" Multiplicity="0..1" />
+          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ID_Type_Inventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipt_Inventory_Inventory">
+          <End Type="InventoryAccountingModel.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="InventoryAccountingModel.Receipt_Inventory" Role="Receipt_Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="ID_Inventory" />
+            </Principal>
+            <Dependent Role="Receipt_Inventory">
+              <PropertyRef Name="ID_Inventory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -848,15 +866,6 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID_Expenditure_Invoice" ColumnName="ID_Expenditure_Invoice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventory">
-            <EntityTypeMapping TypeName="InventoryAccountingModel.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="ID_Type_Inventory" ColumnName="ID_Type_Inventory" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -935,6 +944,24 @@
                 <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID_Accounting_Card" ColumnName="ID_Accounting_Card" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image_Inventory">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Image_Inventory">
+              <MappingFragment StoreEntitySet="Image_Inventory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Image" ColumnName="ID_Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="InventoryAccountingModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID_Type_Inventory" ColumnName="ID_Type_Inventory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Inventory" ColumnName="ID_Inventory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

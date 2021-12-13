@@ -1,4 +1,5 @@
 ﻿using InventoryAccounting.employee;
+using InventoryAccounting.employee.Expenditure_invoice;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,7 +62,6 @@ namespace InventoryAccounting.admin
 
         private void btn_edit_Click(object sender, RoutedEventArgs e)
         {
-
             var recInv = expen.Where(c => c.ID_Expenditure_Invoice == idInv).FirstOrDefault();
             recInv.ID_Employee = idEmployee;
             recInv.ID_Storage = idStorage;
@@ -70,7 +70,7 @@ namespace InventoryAccounting.admin
             Connection.connection.SaveChanges();
             MessageBox.Show("Done");
 
-            NavigationService.Navigate(new page_receipt(0));
+            NavigationService.Navigate(new page_expen(0));
         }
 
         private void btn_back_Click(object sender, RoutedEventArgs e)

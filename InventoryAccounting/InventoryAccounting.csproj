@@ -118,6 +118,9 @@
     <Compile Include="dbo\Expenditure_Invoice.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbo\Image_Inventory.cs">
+      <DependentUpon>Accounting.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbo\Inventory.cs">
       <DependentUpon>Accounting.tt</DependentUpon>
     </Compile>
@@ -378,6 +381,13 @@
       <DependentUpon>Accounting.edmx</DependentUpon>
       <LastGenOutput>Accounting.cs</LastGenOutput>
     </Content>
+    <Resource Include="employee\img\кепка.jpg" />
+    <Resource Include="employee\img\куртка.jpg" />
+    <Resource Include="employee\img\лопата.jpg" />
+    <Resource Include="employee\img\маска.png" />
+    <Resource Include="employee\img\молоток.jpg" />
+    <Resource Include="employee\img\перчатки.jpg" />
+    <Resource Include="employee\img\штаны.jpg" />
     <Resource Include="employee\logo.png" />
   </ItemGroup>
   <ItemGroup>

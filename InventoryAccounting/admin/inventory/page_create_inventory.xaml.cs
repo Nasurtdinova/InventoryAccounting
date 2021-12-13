@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 
 namespace InventoryAccounting.admin.inventory
 {
-    /// <summary>
-    /// Логика взаимодействия для page_create_inventory.xaml
-    /// </summary>
     public partial class page_create_inventory : Page
     {
         public static ObservableCollection<dbo.Type_Inventory> typeInventory { get; set; }
+        public static ObservableCollection<dbo.Image_Inventory> Image { get; set; }
         public static int idTypeInventory { get; set; }
+        public static string image { get; set; }
         dbo.Inventory a = null;
         public page_create_inventory()
         {
             InitializeComponent();
             typeInventory = new ObservableCollection<dbo.Type_Inventory>(Connection.connection.Type_Inventory.ToList());
+            Image = new ObservableCollection<dbo.Image_Inventory>(Connection.connection.Image_Inventory.ToList());
             a = new dbo.Inventory();
             this.DataContext = this;
         }
@@ -42,6 +42,7 @@ namespace InventoryAccounting.admin.inventory
         {
             a.ID_Type_Inventory = idTypeInventory;
             a.Name = name_txt.Text;
+            a.Image = image;
             Connection.connection.Inventory.Add(a);
             Connection.connection.SaveChanges();
             MessageBox.Show("done");
@@ -52,6 +53,12 @@ namespace InventoryAccounting.admin.inventory
         private void btn_back_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void image_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var a = (sender as ComboBox).SelectedItem as dbo.Image_Inventory;
+            image = a.Name;
         }
     }
 }

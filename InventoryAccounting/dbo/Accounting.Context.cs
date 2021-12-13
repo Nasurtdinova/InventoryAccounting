@@ -28,7 +28,6 @@ namespace InventoryAccounting.dbo
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Expenditure_Inventory> Expenditure_Inventory { get; set; }
         public virtual DbSet<Expenditure_Invoice> Expenditure_Invoice { get; set; }
-        public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Receipt_Inventory> Receipt_Inventory { get; set; }
         public virtual DbSet<Receipt_Invoice> Receipt_Invoice { get; set; }
@@ -37,5 +36,7 @@ namespace InventoryAccounting.dbo
         public virtual DbSet<Type_Inventory> Type_Inventory { get; set; }
         public virtual DbSet<Accounting_Card_Expenditure> Accounting_Card_Expenditure { get; set; }
         public virtual DbSet<Accounting_Card_Receipt> Accounting_Card_Receipt { get; set; }
+        public virtual DbSet<Image_Inventory> Image_Inventory { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
     }
 }

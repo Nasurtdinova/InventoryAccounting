@@ -20,8 +20,8 @@ namespace InventoryAccounting.dbo
         public Nullable<int> ID_Storage { get; set; }
         public Nullable<int> ID_Receipt_Invoice { get; set; }
     
-        public virtual Inventory Inventory { get; set; }
         public virtual Receipt_Invoice Receipt_Invoice { get; set; }
         public virtual Storage Storage { get; set; }
+        public virtual Inventory Inventory { get; set; }
     }
 }
